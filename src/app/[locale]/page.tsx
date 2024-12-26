@@ -114,7 +114,7 @@ export default function HomePage() {
         <ModeToggle />
       </div>
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+        <h1 className="text-center text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           {t("home.title")}
         </h1>
         <div className="flex min-w-56 flex-col items-center gap-4">
@@ -129,6 +129,7 @@ export default function HomePage() {
                 label: t("home.inTimeScoring"),
               },
               { value: SourceType.Local, label: t("home.localFile") },
+              { value: SourceType.YouTube, label: t("home.youtube") },
             ]}
           />
           {sourceType !== null && (

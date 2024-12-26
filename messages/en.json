@@ -11,7 +11,8 @@
     "intimeDisclaimer": "Streaming via InTimeScoring may introduce a few moments of buffering.<br></br>For this reason, the timer will increase the working time by 5s.<br></br>Remember to check the times of your scores for the correct working time.",
     "you": "You",
     "totalBusts": "Total busts",
-    "totalPoints": "Total points"
+    "totalPoints": "Total points",
+    "youtube": "YouTube"
   },
   "actions": {
     "start": "Start",
