@@ -14,7 +14,7 @@ import { LanguageToggle } from "../_components/language-toggle";
 
 const KEY_POINT = "x";
 const KEY_BUST = "c";
-const ROUND_MS = 1000;
+const ROUND_MS = 35000;
 
 enum JudgeEvent {
   Bust,
