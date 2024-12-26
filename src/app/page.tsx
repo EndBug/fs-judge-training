@@ -1,20 +1,19 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { SourcePicker } from "~/app/_components/sourcePicker/sourcePicker";
+import {
+  SourcePicker,
+  SourceType,
+} from "~/app/_components/sourcePicker/sourcePicker";
 import { Select } from "~/app/_components/ui/select";
 import { ModeToggle } from "./_components/mode-toggle";
 import { Button } from "./_components/ui/button";
 import { GitHubLink } from "./_components/github-link";
+import { useTranslation } from "./context/i18n";
 
 const KEY_POINT = "x";
 const KEY_BUST = "c";
 const ROUND_MS = 1000;
-
-export enum SourceType {
-  Local,
-  InTimeScoring,
-}
 
 enum JudgeEvent {
   Bust,
@@ -27,6 +26,8 @@ export default function HomePage() {
   const [videoURL, setVideoURL] = useState<string | null>(null);
   const [timerDisplay, setTimerDisplay] = useState<string>("00.000");
   const startButtonRef = useRef<HTMLButtonElement>(null);
+
+  const { t } = useTranslation();
 
   const [app, setApp] = useState({
     isReady: false,
@@ -94,7 +95,7 @@ export default function HomePage() {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [app.report, app.isRoundOver]);
+  }, [app.report, app.isRoundOver, effectiveRoundMs]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -112,7 +113,7 @@ export default function HomePage() {
       </div>
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          FS Judge Training
+          {t("title")}
         </h1>
         <div className="flex flex-col items-center gap-4">
           <Select

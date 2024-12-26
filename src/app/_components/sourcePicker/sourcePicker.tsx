@@ -1,6 +1,10 @@
 "use client";
 
-import { SourceType } from "~/app/page";
+export enum SourceType {
+  Local,
+  InTimeScoring,
+}
+
 import { InTimeScoring } from "./inTimeScoring";
 import { Local } from "./local";
 
