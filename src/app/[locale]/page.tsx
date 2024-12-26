@@ -10,6 +10,7 @@ import { ModeToggle } from "../_components/mode-toggle";
 import { Button } from "../_components/ui/button";
 import { GitHubLink } from "../_components/github-link";
 import { useTranslations } from "next-intl";
+import { LanguageToggle } from "../_components/language-toggle";
 
 const KEY_POINT = "x";
 const KEY_BUST = "c";
@@ -108,8 +109,9 @@ export default function HomePage() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <div className="absolute right-4 top-4 flex gap-3">
-        <ModeToggle />
         <GitHubLink />
+        <LanguageToggle />
+        <ModeToggle />
       </div>
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
