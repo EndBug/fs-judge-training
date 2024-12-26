@@ -8,7 +8,10 @@
     "sources": "Sources",
     "inTimeScoring": "InTime Scoring",
     "localFile": "Local file",
-    "intimeDisclaimer": "Streaming via InTimeScoring may introduce a few moments of buffering.<br></br>For this reason, the timer will increase the working time by 5s.<br></br>Remember to check the times of your scores for the correct working time."
+    "intimeDisclaimer": "Streaming via InTimeScoring may introduce a few moments of buffering.<br></br>For this reason, the timer will increase the working time by 5s.<br></br>Remember to check the times of your scores for the correct working time.",
+    "you": "You",
+    "totalBusts": "Total busts",
+    "totalPoints": "Total points"
   },
   "actions": {
     "start": "Start",

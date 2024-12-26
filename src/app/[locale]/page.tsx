@@ -14,7 +14,7 @@ import { LanguageToggle } from "../_components/language-toggle";
 
 const KEY_POINT = "x";
 const KEY_BUST = "c";
-const ROUND_MS = 35000;
+const ROUND_MS = 1000;
 
 enum JudgeEvent {
   Bust,
@@ -162,40 +162,56 @@ export default function HomePage() {
             )}
 
             {app.isRoundOver && (
-              <div className="border-border-white flex justify-center">
-                <p className="flex items-center justify-center border border-white px-3 py-1">
-                  YOU
-                </p>
-                <div className="flex flex-wrap items-center justify-center">
-                  {app.report
-                    .filter((e) => e[1] !== JudgeEvent.Start)
-                    .map((e, i) => (
-                      <p
-                        className="broder-white flex flex-1 flex-col items-center justify-center border border-white px-3 py-1"
-                        key={i}
-                      >
-                        <span className="font-semibold">
-                          {e[1] === JudgeEvent.Point ? (
-                            <span className="text-green-500">1</span>
-                          ) : (
-                            <span className="text-red-500">0</span>
-                          )}
-                        </span>
-                        <span
-                          className={`flex flex-[3] ${e[0].getTime() - app.report[0]![0].getTime() > ROUND_MS ? "text-yellow-500" : ""}`}
+              <div className="flex flex-col gap-3">
+                <div className="border-border-white flex justify-center">
+                  <p className="flex items-center justify-center border px-3 py-1">
+                    {t("home.you")}
+                  </p>
+                  <div className="flex flex-wrap items-center">
+                    {app.report
+                      .filter((e) => e[1] !== JudgeEvent.Start)
+                      .map((e, i) => (
+                        <p
+                          className="flex w-14 flex-col items-center justify-center border px-3 py-1"
+                          key={i}
                         >
-                          {(
-                            (e[0].getTime() - app.report[0]![0].getTime()) /
-                            1000
-                          ).toFixed(2)}
-                        </span>
-                      </p>
-                    ))}
+                          <span className="text-blue-900 dark:text-blue-400">
+                            {i}
+                          </span>
+                          <span className="text-lg font-semibold">
+                            {e[1] === JudgeEvent.Point ? (
+                              <span className="text-green-500">1</span>
+                            ) : (
+                              <span className="text-red-500">0</span>
+                            )}
+                          </span>
+                          <span
+                            className={`flex ${e[0].getTime() - app.report[0]![0].getTime() > ROUND_MS ? "text-yellow-500" : ""}`}
+                          >
+                            {(
+                              (e[0].getTime() - app.report[0]![0].getTime()) /
+                              1000
+                            ).toFixed(2)}
+                          </span>
+                        </p>
+                      ))}
+                  </div>
                 </div>
+                <p className="p-3 text-center">
+                  {t("home.totalPoints")}:{" "}
+                  <span className="font-semibold">
+                    {app.report.filter((e) => e[1] === JudgeEvent.Point).length}
+                  </span>
+                  <br />
+                  {t("home.totalBusts")}:{" "}
+                  <span className="font-semibold">
+                    {app.report.filter((e) => e[1] === JudgeEvent.Bust).length}
+                  </span>
+                </p>
               </div>
             )}
 
-            {app.isRoundOver && (
+            {sourceType !== null && (
               <Button
                 onClick={() =>
                   setApp(() => ({

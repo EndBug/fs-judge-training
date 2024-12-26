@@ -44,7 +44,7 @@ export function InTimeScoring(props: InTimeScoringProps) {
         })}
       </p>
 
-      {savedUrl && <iframe src={savedUrl} className="h-[50vh] w-[60vw]" />}
+      {savedUrl && <iframe src={savedUrl} className="h-[75vh] w-[60vw]" />}
     </div>
   );
 }
