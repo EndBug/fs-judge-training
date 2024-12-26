@@ -6,10 +6,10 @@ import {
   SourceType,
 } from "~/app/_components/sourcePicker/sourcePicker";
 import { Select } from "~/app/_components/ui/select";
-import { ModeToggle } from "./_components/mode-toggle";
-import { Button } from "./_components/ui/button";
-import { GitHubLink } from "./_components/github-link";
-import { useTranslation } from "./context/i18n";
+import { ModeToggle } from "../_components/mode-toggle";
+import { Button } from "../_components/ui/button";
+import { GitHubLink } from "../_components/github-link";
+import { useTranslations } from "next-intl";
 
 const KEY_POINT = "x";
 const KEY_BUST = "c";
@@ -27,7 +27,7 @@ export default function HomePage() {
   const [timerDisplay, setTimerDisplay] = useState<string>("00.000");
   const startButtonRef = useRef<HTMLButtonElement>(null);
 
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   const [app, setApp] = useState({
     isReady: false,
