@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SourcePicker } from "~/app/_components/sourcePicker/sourcePicker";
 import { Select } from "~/app/_components/ui/select";
 import { ModeToggle } from "./_components/mode-toggle";
@@ -8,7 +8,7 @@ import { Button } from "./_components/ui/button";
 
 const KEY_POINT = "x";
 const KEY_BUST = "c";
-const ROUND_MS = 35000;
+const ROUND_MS = 1000;
 
 export enum SourceType {
   Local,
@@ -25,6 +25,7 @@ export default function HomePage() {
   const [sourceType, setSourceType] = useState<SourceType | null>(null);
   const [videoURL, setVideoURL] = useState<string | null>(null);
   const [timerDisplay, setTimerDisplay] = useState<string>("00.000");
+  const startButtonRef = useRef<HTMLButtonElement>(null);
 
   const [app, setApp] = useState({
     isReady: false,
@@ -37,6 +38,8 @@ export default function HomePage() {
       sourceType === SourceType.InTimeScoring ? ROUND_MS + 5000 : ROUND_MS,
     [sourceType],
   );
+
+  useEffect(() => startButtonRef.current?.scrollIntoView(), [videoURL]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
     setApp((curr) => {
@@ -59,10 +62,8 @@ export default function HomePage() {
     });
   };
 
-  useEffect(() => console.log(app.report), [app.report]);
-
   useEffect(() => {
-    if (app.report[0] === undefined) return;
+    if (app.report[0] === undefined) return setTimerDisplay("00.000");
     if (app.isRoundOver) return;
 
     const interval = setInterval(() => {
@@ -72,15 +73,21 @@ export default function HomePage() {
         app.report
           .find(([_, action]) => action === JudgeEvent.Start)![0]
           .getTime();
-      const seconds = Math.floor(diff / 1000);
-      const milliseconds = diff % 1000;
 
       if (diff < effectiveRoundMs) {
+        const displayedDiff = diff;
+        const seconds = Math.floor(displayedDiff / 1000);
+        const milliseconds = displayedDiff % 1000;
         setTimerDisplay(
           `${seconds.toString().padStart(2, "0")}.${milliseconds.toString().padStart(3, "0")}`,
         );
       } else {
-        setTimerDisplay("35.000");
+        const displayedDiff = effectiveRoundMs;
+        const seconds = Math.floor(displayedDiff / 1000);
+        const milliseconds = displayedDiff % 1000;
+        setTimerDisplay(
+          `${seconds.toString().padStart(2, "0")}.${milliseconds.toString().padStart(3, "0")}`,
+        );
         setApp((curr) => ({ ...curr, isRoundOver: true }));
       }
     }, 50);
@@ -102,7 +109,7 @@ export default function HomePage() {
         <ModeToggle />
       </div>
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           FS Judge Training
         </h1>
         <div className="flex flex-col items-center gap-4">
@@ -127,12 +134,16 @@ export default function HomePage() {
               Bust: {KEY_BUST.toUpperCase()}
             </p>
 
-            {!app.isReady && videoURL !== null && (
-              <div className="flex flex-col items-center justify-center gap-2">
+            {!app.isReady && (
+              <div
+                className={`flex flex-col items-center justify-center gap-2 ${sourceType === null ? "hidden" : ""}`}
+              >
                 <p>Once the video is playing, press the start button</p>
                 <Button
-                  disabled={videoURL === null}
+                  disabled={!videoURL}
                   onClick={() => setApp((curr) => ({ ...curr, isReady: true }))}
+                  id="start-button"
+                  ref={startButtonRef}
                 >
                   Start
                 </Button>
@@ -179,7 +190,7 @@ export default function HomePage() {
             {app.isRoundOver && (
               <Button
                 onClick={() =>
-                  setApp((curr) => ({
+                  setApp(() => ({
                     isReady: false,
                     isRoundOver: false,
                     report: [],
