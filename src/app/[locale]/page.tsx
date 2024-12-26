@@ -115,17 +115,20 @@ export default function HomePage() {
       </div>
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          {t("title")}
+          {t("home.title")}
         </h1>
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex min-w-56 flex-col items-center gap-4">
           <Select
             value={sourceType}
             onChange={setSourceType}
-            placeholder="Select a source type"
-            selectLabel="Sources"
+            placeholder={t("home.selectSource")}
+            selectLabel={t("home.sources")}
             options={[
-              { value: SourceType.InTimeScoring, label: "InTime Scoring" },
-              { value: SourceType.Local, label: "Local file" },
+              {
+                value: SourceType.InTimeScoring,
+                label: t("home.inTimeScoring"),
+              },
+              { value: SourceType.Local, label: t("home.localFile") },
             ]}
           />
           {sourceType !== null && (
@@ -134,23 +137,23 @@ export default function HomePage() {
 
           <div className="flex flex-col items-center justify-center gap-2">
             <p className="text-center">
-              Point/Round start: {KEY_POINT.toUpperCase()}
+              {t("home.pointKeyDesc")}: {KEY_POINT.toUpperCase()}
               <br />
-              Bust: {KEY_BUST.toUpperCase()}
+              {t("home.bustKeyDesc")}: {KEY_BUST.toUpperCase()}
             </p>
 
             {!app.isReady && (
               <div
                 className={`flex flex-col items-center justify-center gap-2 ${sourceType === null ? "hidden" : ""}`}
               >
-                <p>Once the video is playing, press the start button</p>
+                <p>{t("home.pressStart")}</p>
                 <Button
                   disabled={!videoURL}
                   onClick={() => setApp((curr) => ({ ...curr, isReady: true }))}
                   id="start-button"
                   ref={startButtonRef}
                 >
-                  Start
+                  {t("actions.start")}
                 </Button>
               </div>
             )}
@@ -202,7 +205,7 @@ export default function HomePage() {
                   }))
                 }
               >
-                Restart
+                {t("actions.reset")}
               </Button>
             )}
           </div>

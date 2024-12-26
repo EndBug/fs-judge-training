@@ -1,3 +1,26 @@
 {
-  "title": "FS Judge Training IT"
+  "actions": {
+    "reset": "Reimposta",
+    "save": "Salva",
+    "start": "Inizia"
+  },
+  "home": {
+    "bustKeyDesc": "Penalità",
+    "inTimeScoring": "InTime Scoring",
+    "intimeDisclaimer": "Lo streaming tramite InTimeScoring potrebbe introdurre alcuni momenti di buffering.<br></br>Per questo motivo, il timer aumenterà il tempo di lavoro di 5 secondi.<br></br>Ricordati di controllare i tempi dei tuoi punteggi per il corretto \norario di lavoro.",
+    "localFile": "File locale",
+    "pointKeyDesc": "Inizio round/punto",
+    "pressStart": "Una volta riprodotto il video, premi il pulsante di avvio",
+    "selectSource": "Seleziona un tipo di sorgente",
+    "sources": "Sorgenti",
+    "title": "Allenamento giudici FS"
+  },
+  "menus": {
+    "dark": "Scuro",
+    "github": "Codice sorgente",
+    "language": "Lingua",
+    "light": "Chiaro",
+    "system": "Sistema",
+    "theme": "Tema"
+  }
 }

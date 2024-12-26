@@ -1,9 +1,12 @@
+import { useTranslations } from "next-intl";
 import { Button } from "./ui/button";
 import { Tooltip } from "./ui/tooltip";
 
 export function GitHubLink() {
+  const t = useTranslations();
+
   return (
-    <Tooltip content={<p>GitHub Repository</p>}>
+    <Tooltip content={<p>{t("menus.github")}</p>}>
       <Button
         size="icon"
         variant="outline"

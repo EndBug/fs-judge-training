@@ -1,3 +1,26 @@
 {
-  "title": "FS Judge Training EN"
+  "home": {
+    "title": "FS Judge Training",
+    "pointKeyDesc": "Point/Round start",
+    "bustKeyDesc": "Bust",
+    "pressStart": "Once the video is playing, press the start button",
+    "selectSource": "Select a source type",
+    "sources": "Sources",
+    "inTimeScoring": "InTime Scoring",
+    "localFile": "Local file",
+    "intimeDisclaimer": "Streaming via InTimeScoring may introduce a few moments of buffering.<br></br>For this reason, the timer will increase the working time by 5s.<br></br>Remember to check the times of your scores for the correct working time."
+  },
+  "actions": {
+    "start": "Start",
+    "reset": "Reset",
+    "save": "Save"
+  },
+  "menus": {
+    "github": "Source code",
+    "language": "Language",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  }
 }

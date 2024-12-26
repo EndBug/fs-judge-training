@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "~/app/_components/ui/button";
 import { Input } from "~/app/_components/ui/input";
@@ -12,6 +13,8 @@ export interface InTimeScoringProps {
 }
 
 export function InTimeScoring(props: InTimeScoringProps) {
+  const t = useTranslations();
+
   const [url, setUrl] = useState<string>("");
   const [savedUrl, setSavedUrl] = useState<string>("");
 
@@ -31,16 +34,14 @@ export function InTimeScoring(props: InTimeScoringProps) {
           onClick={() => setSavedUrl(url)}
           className="flex flex-col items-center justify-center gap-0"
         >
-          Save
+          {t("actions.save")}
         </Button>
       </div>
 
       <p className="text-center">
-        Streaming via InTimeScoring may introduce a few moments of buffering.
-        <br />
-        For this reason, the timer will increase the working time by 5s.
-        <br />
-        Remember to check the times of your scores for the correct working time.
+        {t.rich("home.intimeDisclaimer", {
+          br: () => <br />,
+        })}
       </p>
 
       {savedUrl && <iframe src={savedUrl} className="h-[50vh] w-[60vw]" />}
