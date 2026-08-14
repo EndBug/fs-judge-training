@@ -42,7 +42,9 @@ export default function HomePage() {
     [sourceType],
   );
 
-  useEffect(() => startButtonRef.current?.scrollIntoView(), [videoURL]);
+  useEffect(() => {
+    startButtonRef.current?.scrollIntoView();
+  }, [videoURL]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
     setApp((curr) => {
@@ -66,7 +68,10 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    if (app.report[0] === undefined) return setTimerDisplay("00.000");
+    if (app.report[0] === undefined) {
+      setTimerDisplay("00.000");
+      return;
+    }
     if (app.isRoundOver) return;
 
     const interval = setInterval(() => {

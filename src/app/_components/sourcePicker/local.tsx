@@ -10,7 +10,9 @@ export interface LocalProps {
 export function Local(props: LocalProps) {
   const [savedUrl, setSavedUrl] = useState<string>("");
 
-  useEffect(() => props.handleSave(savedUrl), [savedUrl, props]);
+  useEffect(() => {
+    props.handleSave(savedUrl);
+  }, [savedUrl, props]);
 
   return (
     <div className="flex flex-col items-center gap-4">

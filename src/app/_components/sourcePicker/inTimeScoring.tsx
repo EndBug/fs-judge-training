@@ -19,7 +19,9 @@ export function InTimeScoring(props: InTimeScoringProps) {
   const [savedUrl, setSavedUrl] = useState<string>("");
 
   const isSaveDisabled = useMemo(() => !urlRegex.test(url), [url]);
-  useEffect(() => props.handleSave(savedUrl), [savedUrl, props]);
+  useEffect(() => {
+    props.handleSave(savedUrl);
+  }, [savedUrl, props]);
 
   return (
     <div className="flex flex-col items-center gap-4">
